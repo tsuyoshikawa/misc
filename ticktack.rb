@@ -11,8 +11,10 @@ module TickTack
     def self.win?(player)
       return false if player.hand.size < 3
 
+      player_hand = player.hand.sort
+
       WIN_PATTERN.each do |pattern|
-        return true if (player.hand.sort & pattern).size == 3
+        return true if (player_hand & pattern).size == 3
       end
 
       false
