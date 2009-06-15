@@ -103,9 +103,21 @@
 ;;盤から一つ番号を選ぶ
 (define (choice player board)
   (let ((choiced (random-one board)))
-    (values #?=(non-nested-merge player choiced) #?=(delete-at board choiced))
+    (begin (non-nested-merge player choiced) (delete-at board choiced))
     )
   )
 
 (choice '() '(1 2 3 4 5 6 7 8 9))
+
+(define (game)
+  (map
+   (lambda (player)
+     (if (or (null? board) (win? player))
+	 (print "win!")
+	 (choice player board)
+	 )
+     )
+   '(() ())
+   )
+  )
 
