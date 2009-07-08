@@ -6,7 +6,7 @@ module TickTack
   #審判
   class Judge
     WIN_PATTERN = [[1,2,3], [4,5,6], [7,8,9], [1,4,7], [2,5,8], [3,6,9], [1,5,9], [3,5,7]]
-    
+
     #判定、勝ちならtrue
     def self.win?(player)
       return false if player.hand.size < 3
@@ -29,13 +29,13 @@ module TickTack
       @name = name
       reset!
     end
-    
+
     #出目を選び、印をつける。選択できたらtrueが返る
     #盤は破壊していく（笑）
     def choice(board)
       return false if board.empty?
 
-      choiced = board.shuffle.first
+      choiced = board.sort_by{rand}.first
 
       if board.include? choiced
         @hand.push(choiced) && board.delete(choiced)
